@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Suite1" preserve-order="true" parent-module="my_patterns.test.automation.web.DriverFactory">
+
+	<test name="StartChromeService" preserve-order="true">
+		<classes>
+			<class name="my_patterns.test.automation.web.DriverFactory" />
+		</classes>
+	</test>
+
+	<test name="ExamplesTests" preserve-order="true">
+		<classes>
+			<class name="my_patterns.test.automation.web.package_for_log4j_level_debug.SeleniumTest" />
+			<class name="my_patterns.test.automation.web.package_for_log4j_level_info.ClassTestLog4jLevels"></class>
+		</classes>
+	</test>
+
+</suite>  

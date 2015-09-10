@@ -1,0 +1,20 @@
+
+<Configuration status="ERROR">
+	<Appenders>
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout pattern="[%-5level] %d{HH:mm:ss.SSS} %logger{36} - %msg%n"/>
+		</Console>
+		<File name="File" filename="test-output/logs/output.log" immediateFlush="false" append="true">
+			<PatternLayout pattern="[%5p] - %d{yyyy/MM/dd - HH:mm:ss.SSS} %c:%L - %m%n"/>
+		</File>
+	</Appenders>
+	<Loggers>
+		<Logger name="my_patterns.test.automation.web.package_for_log4j_level_info" level="info">
+			<AppenderRef ref="File"/>
+		</Logger>
+		<Logger name="my_patterns.test.automation.web.package_for_log4j_level_debug" level="debug"/>
+		<Root level="error">
+			<AppenderRef ref="Console"/>
+		</Root>
+	</Loggers>
+</Configuration>
