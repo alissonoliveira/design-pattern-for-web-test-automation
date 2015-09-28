@@ -15,25 +15,23 @@ import org.testng.annotations.BeforeSuite;
 public class DriverFactory {
 
 	public static ChromeDriverService service;
-	private Logger logger = LogManager.getLogger(DriverFactory.class);
-
-	@BeforeSuite
-	public void beforeSuite() throws IOException {
-		logger.info("Starting the ChromeDriverService");
-		service = new ChromeDriverService.Builder().usingDriverExecutable(new File("resources/chromedriver.exe"))
-				.usingAnyFreePort().build();
-		service.start();
-		logger.info("ChromeDriverService Started");
-	}
+	private static Logger logger = LogManager.getLogger(DriverFactory.class);
 
 	@AfterSuite
-	public void afterSuit() {
+	public static void afterSuit() {
 		logger.info("Finishing the ChromeDriverService");
 		service.stop();
 		logger.info("ChromeDriverService finished");
 	}
 
-	public WebDriver producesDrive() {
+	public static WebDriver producesDrive() throws IOException {
+		if (service == null) {
+			logger.info("Starting the ChromeDriverService");
+			service = new ChromeDriverService.Builder().usingDriverExecutable(new File("resources/chromedriver.exe"))
+					          .usingAnyFreePort().build();
+			service.start();
+			logger.info("ChromeDriverService Started");
+		}
 		return new RemoteWebDriver(service.getUrl(), DesiredCapabilities.chrome());
 	}
 }

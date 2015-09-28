@@ -11,15 +11,17 @@ import org.testng.annotations.Test;
 
 import my_patterns.test.automation.web.DriverFactory;
 
-public class SeleniumTest extends DriverFactory{
+import java.io.IOException;
+
+public class SeleniumTest {
 	
 	private WebDriver driver;
 	private Logger logger = LogManager.getLogger(getClass());
 
 	@BeforeClass
-	public void before() {
+	public void before() throws IOException {
 		logger.debug("Obtain ChromeDrive instance");
-		driver = super.producesDrive();
+		driver = DriverFactory.producesDrive();
 		logger.debug("Instance of ChromeDrive obtained");
 	}
 
